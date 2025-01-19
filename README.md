@@ -2,7 +2,6 @@
 <img src="https://github.com/user-attachments/assets/ebbadb03-4b72-4b45-befb-2ce0100b137e" alt="Zuro chatbot logo with the full name written in the center, red theme, and the letter Z prominently displayed to convey a chatbot feel" width="400" height="400">
 
 
-Zuro ChatBot is an AI-powered chatbot designed to assist users by providing conversational AI capabilities. Whether you are looking for an intelligent assistant to handle queries or seeking to build a custom chatbot, Zuro provides a flexible foundation for creating engaging user experiences.
 
 ## Table of Contents 📚
 - [About](#about)
@@ -15,22 +14,22 @@ Zuro ChatBot is an AI-powered chatbot designed to assist users by providing conv
 
 ## About 📖
 
-Zuro ChatBot is built with state-of-the-art natural language processing (NLP) techniques to enable smooth, responsive, and meaningful conversations. It can be integrated into various platforms, providing users with quick and accurate answers to their questions. With a modular design, Zuro can easily be customized and expanded to meet the specific needs of different use cases.
+Zuro is a friendly chatbot designed to engage with users in an interactive and entertaining way. It includes features such as text encryption, decryption, and generating fake information. This project utilizes the `rich`, `art`, and `fakefarsi` libraries.
 
 ## Features ✨
 - **Natural Language Processing (NLP)**: Understands and responds to user queries with a human-like conversational flow.
 - **Customizable Responses**: Easily adjustable to tailor responses for different scenarios.
-- **Multi-Platform Support**: Can be deployed on different platforms, including web and mobile applications.
-- **Easy Integration**: Simple API integrations and ready-to-use modules for faster implementation.
+- **Enhanced User Interaction**: Better and more readable console output using the `rich` library.
+- **Text Art Display**: Display text art using the `art` library.
+- **Generate Fake Information**: Generate fake information using the `fakefarsi` library.
+- **Text Encryption and Decryption**: Tools to encrypt and decrypt text.
+
 
 ## Technologies Used 🛠️
 
 - **Python**: Core programming language for implementing logic and AI algorithms.
-- **TensorFlow**: Framework for machine learning models and NLP tasks.
-- **Flask**: Lightweight web framework to handle server-side logic.
-- **NLTK**: Natural Language Toolkit for text processing and NLP functionalities.
-- **SQLite**: Simple database solution for storing user interactions and training data.
-  
+- **FakeFarsi Package** : A package developed by Mahan Rahmani to produce all kinds of fake information in Farsi language. [Github](https://github.com/mhnrhmni/FakeFarsi)
+
 ## Installation ⚙️
 
 To get started with Zuro ChatBot locally, follow these steps:
@@ -44,29 +43,16 @@ cd Zuro-ChatBot
 
 ### 2. Install Dependencies
 
-Ensure you have Python 3.x installed. Then, install the required dependencies using pip:
-
-```bash
-pip install -r requirements.txt
-```
-
-### 3. Set up the environment
-
-Set up your environment variables or configure any settings required by your application (like API keys or database connections). Make sure to follow any setup instructions in the repository or documentation.
+You don't need to do anything special to install the requirements, leave it all to the bot
 
 ### 4. Run the Bot
 
-You can start the chatbot locally by running the following command:
-
-```bash
-python app.py
-```
-
-Visit [http://localhost:5000](http://localhost:5000) in your browser to interact with the chatbot.
+After instalation , The chatbot is at your disposal
+َب
 
 ## Usage 💬
 
-Once the chatbot is running, you can start interacting with it through a simple interface, or integrate it with your application by using the API endpoints provided. The bot is designed to handle a variety of user inputs and return contextually appropriate responses.
+Once Zuro ChatBot is running, you can chat with it directly in your terminal.  
 
 Example interaction:
 
@@ -75,7 +61,6 @@ User: Hello, what can I do here?
 Zuro: Hi there! I'm Zuro, your assistant. How can I help you today?
 ```
 
-For API integration, refer to the `/docs` endpoint once the bot is running, or check out the example files included in the repository.
 
 ## Contributing 🤝
 
@@ -88,10 +73,31 @@ We welcome contributions! If you'd like to improve the chatbot or fix bugs, plea
 
 For larger contributions, please ensure to discuss them with the maintainers via GitHub Issues before submitting a pull request.
 
+## Issues 🐛
+If you encounter any issues, please let us know by opening an [issue](https://github.com/mhnrhmni/Zuro-ChatBot/issues). We'll do our best to resolve it quickly.  
+
 ## License 📜
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
+## Acknowledgments ❤️
+- Thanks to the open-source community for their amazing tools and libraries.  
+- Inspired by the need for smarter, more efficient communication solutions.
+
+## Autors 🧑‍💻
+Made with 💻 and ❤️ by
+[Zainab Ansari](https://github.com/mhnrhmni) (Owner)
+[Mahan Rahmani](https://github.com/mhnrhmni) (Developer)
+
+
+## 📫 Connect with Us  
+For questions, suggestions, or just to say hi, feel free to reach out:  
+- GitHub: [Zainab Ansari](https://github.com/mhnrhmni)
+- Email: *haseb3883838@gmail.com*
+
+- GitHub: [Mahan Rahmani](https://github.com/mhnrhmni)  
+- Email: *mahanrahmani777@gmail.com*
+  
 ---
 
 If you need more specific details to add, feel free to let me know! This README provides a good starting point and can be expanded as necessary.
