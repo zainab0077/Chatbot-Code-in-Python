@@ -1,6 +1,6 @@
 # Zuro ChatBot 🤖
-![Zuro chatbot logo with the full name written in the center, red theme, and the letter Z prominently displayed to convey a chatbot feel](https://github.com/user-attachments/assets/454c7aad-f8a3-44ec-accb-ba40e68ba74f){:height="20px" width="20px"}
-![Zuro Logo]([your-logo.png](https://github.com/user-attachments/assets/454c7aad-f8a3-44ec-accb-ba40e68ba74f){:height="200px" width="200px"}
+<img src="https://github.com/user-attachments/assets/ebbadb03-4b72-4b45-befb-2ce0100b137e" alt="Zuro chatbot logo with the full name written in the center, red theme, and the letter Z prominently displayed to convey a chatbot feel" width="400" height="400">
+
 
 Zuro ChatBot is an AI-powered chatbot designed to assist users by providing conversational AI capabilities. Whether you are looking for an intelligent assistant to handle queries or seeking to build a custom chatbot, Zuro provides a flexible foundation for creating engaging user experiences.
 
