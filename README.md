@@ -84,7 +84,7 @@ Made with 💻 and ❤️ by
 ## 📫 Connect with Us  
 For questions, suggestions, or just to say hi, feel free to reach out:  
 - GitHub: [Zainab Ansari](https://github.com/zainab0077)
-- Email: *haseb3883838@gmail.com*
+- Email: *zainab233223322@gmail.com*
 
 - GitHub: [Mahan Rahmani](https://github.com/mhnrhmni)  
 - Email: *mahanrahmani777@gmail.com*
