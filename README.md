@@ -3,15 +3,6 @@
 
 
 
-## Table of Contents 📚
-- [About](#about)
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
-
 ## About 📖
 
 Zuro is a friendly chatbot designed to engage with users in an interactive and entertaining way. It includes features such as text encryption, decryption, and generating fake information. This project utilizes the `rich`, `art`, and `fakefarsi` libraries.
