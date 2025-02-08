@@ -38,8 +38,7 @@ You don't need to do anything special to install the requirements, leave it all 
 
 ### 4. Run the Bot
 
-After instalation , The chatbot is at your disposal
-َب
+After instalation, The chatbot is at your disposal
 
 ## Usage 💬
 
