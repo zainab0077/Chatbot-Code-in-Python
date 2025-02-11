@@ -19,7 +19,7 @@ Zuro is a friendly chatbot designed to engage with users in an interactive and e
 ## Technologies Used 🛠️
 
 - **Python**: Core programming language for implementing logic and AI algorithms.
-- **FakeFarsi Package** : A package developed by [Mahan Rahmani](https://github.com/mhnrhmni) to produce all kinds of fake information in Farsi language. [Github](https://github.com/mhnrhmni/FakeFarsi)
+- **FakeFarsi Package**: A package developed by [Mahan Rahmani](https://github.com/mhnrhmni) to produce all kinds of fake information in Farsi language, [Github](https://github.com/mhnrhmni/FakeFarsi).
 
 ## Installation ⚙️
 
@@ -38,8 +38,7 @@ You don't need to do anything special to install the requirements, leave it all 
 
 ### 4. Run the Bot
 
-After instalation , The chatbot is at your disposal
-َب
+After instalation, The chatbot is at your disposal
 
 ## Usage 💬
 

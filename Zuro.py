@@ -4,7 +4,9 @@ import subprocess  # Importing the subprocess module to execute shell commands
 import sys  # Importing the sys module to access system-specific parameters and functions
 
 def install(package):
-    """Install a package using pip."""
+    """
+    Install a package using pip.
+    """
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])  # Execute pip install command for the specified package
 
 try:
@@ -24,12 +26,16 @@ from fakefarsi import fakefarsi  # Importing the fakefarsi module for generating
 console = Console()  # Creating an instance of Console for styled output
 
 def print_ai():
-    """Print the AI art representation."""
+    """
+    Print the AI art representation.
+    """
     ai_art = text2art("AI", font="block")  # Generate ASCII art for the text "AI"
     console.print(ai_art, style="bold red")  # Print the ASCII art in bold red style
 
 def chatbot():
-    """Run the chatbot interaction."""
+    """
+    Run the chatbot interaction.
+    """
     print_ai()  # Call the function to print the AI art representation
     console.print("[bold green]Chatbot:[/] Hi! I am your chatbot. You can ask me anything! Type 'what you can' to see features.")  # Greet the user
 
@@ -38,16 +44,26 @@ def chatbot():
         handle_user_input(user_input)  # Pass the user input to the handler function
 
 def handle_user_input(user_input):
-    """Handle user input and provide appropriate responses."""
+    """
+    Handle user input and provide appropriate responses.
+    """
     responses = {  # Dictionary mapping user inputs to chatbot responses
-        "name": "[bold green]Chatbot:[/] My name is Zuro. How can I help you?",  # Response for asking the chatbot's name
+        # Welcome conversation
         "hello": "[bold green]Chatbot:[/] Hello! How can I help you?",
         "hi": "[bold green]Chatbot:[/] Hi! How can I help you?",
         "hey": "[bold green]Chatbot:[/] Hey! How can I help you?",
         "how are you": "[bold green]Chatbot:[/] I'm just a program, but I'm doing great! How about you?",
         "who are you": "[bold green]Chatbot:[/] I am Zuro, your friendly chatbot. How can I assist you?",
+
+        # Finuture
         "what you can": "[bold green]Chatbot:[/]\n\ntype 'Encrypt' to encrypt your text \n\ntype 'Decrypt' to decrypt your text \n\ntype 'fake' to generate a fake information \n\nand you can ask me 'anythings' :) \n\ntype 'bye' to exit.",
-        "bye": "Chatbot: Goodbye! Have a great day!"  # Response for exiting the chatbot
+
+        # Name
+        "name": "[bold green]Chatbot:[/] My name is Zuro. How can I help you?",
+        "what's your name": "[bold green]Chatbot:[/] My name is Zuro. I am chat-bot build by Python. How can I help you?",
+
+        # End conversation
+        "bye": "[bold green]Chatbot: Goodbye! Have a great day!"  # Response for exiting the chatbot
     }
     if "bye" in user_input:  # Check if the user wants to exit
         console.print(responses["bye"])  # Print the goodbye message
@@ -66,13 +82,17 @@ def handle_user_input(user_input):
     return False  # Return False to indicate the function has completed
 
 def encrypt_text():
-    """Encrypt the user's text input."""
+    """
+    Encrypt the user's text input.
+    """
     input_text = Prompt.ask("[bold blue]Enter your text to encrypt:[/]")  # Prompt the user for text to encrypt
     encrypted_text = input_text.encode("utf-8").hex()  # Encrypt the text by encoding it to UTF-8 and converting to hex
     console.print(f"[bold green]Chatbot:[/] Here is your encrypted text: {encrypted_text}")  # Print the encrypted text
 
 def decrypt_text():
-    """Decrypt the user's hex input."""
+    """
+    Decrypt the user's hex input.
+    """
     input_text = Prompt.ask("[bold blue]Enter your text to decrypt:[/]")  # Prompt the user for hex text to decrypt
     try:
         decrypted_text = bytes.fromhex(input_text).decode("utf-8")  # Attempt to convert hex back to UTF-8 text
@@ -81,7 +101,9 @@ def decrypt_text():
         console.print("[bold green]Chatbot:[/] Invalid hex string. Please enter a valid hex string.")  # Inform the user of the error
 
 def generate_fake_info():
-    """Generate and display fake information."""
+    """
+    Generate and display fake information.
+    """
     fake_info = fakefarsi.complete()  # Generate fake information using the fakefarsi library
     console.print(f"[bold green]Chatbot:[/] Here is your fake information: \n{fake_info}")  # Print the generated fake information
 
