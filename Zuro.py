@@ -37,7 +37,7 @@ def chatbot():
     Run the chatbot interaction.
     """
     print_ai()  # Call the function to print the AI art representation
-    console.print("[bold green]Chatbot:[/] Hi! I am your chatbot. You can ask me anything! Type 'what you can' to see features.")  # Greet the user
+    console.print("[bold green]Chatbot:[/] Hi! I am your chatbot. You can ask me anything! Type 'what can you do?' to see features.")  # Greet the user
 
     while True:  # Start an infinite loop for continuous interaction
         user_input = Prompt.ask("[bold blue]You[/]").lower()  # Prompt the user for input and convert it to lowercase
@@ -56,7 +56,7 @@ def handle_user_input(user_input):
         "who are you": "[bold green]Chatbot:[/] I am Zuro, your friendly chatbot. How can I assist you?",
 
         # Finuture
-        "what you can": "[bold green]Chatbot:[/]\n\ntype 'Encrypt' to encrypt your text \n\ntype 'Decrypt' to decrypt your text \n\ntype 'fake' to generate a fake information \n\nand you can ask me 'anythings' :) \n\ntype 'bye' to exit.",
+        "what can you do": "[bold green]Chatbot:[/]\n\ntype 'Encrypt' to encrypt your text \n\ntype 'Decrypt' to decrypt your text \n\ntype 'fake' to generate a fake information \n\nand you can ask me 'anything' :) \n\ntype 'bye' to exit.",
 
         # Name
         "name": "[bold green]Chatbot:[/] My name is Zuro. How can I help you?",
