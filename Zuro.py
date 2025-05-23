@@ -62,7 +62,7 @@ def print_ai():
 def chatbot():
     """Run the chatbot interaction loop."""
     print_ai()
-    chatbot_print("Hi! I am your chatbot. You can ask me anything! Type 'what can you do?' to see features.")
+    chatbot_print("Hi! I am your chatbot. You can ask me anything! Type 'what can you do' to see features.")
 
     while True:
         user_input = Prompt.ask("[bold blue]You[/]").lower()
