@@ -1,112 +1,177 @@
-## Code Commented
+"""
+Zuro - A simple chatbot with encryption, decryption, and fake information generation capabilities.
+"""
 
-import subprocess  # Importing the subprocess module to execute shell commands
-import sys  # Importing the sys module to access system-specific parameters and functions
+import hashlib
+import subprocess
+import sys
 
-def install(package):
-    """
-    Install a package using pip.
-    """
-    subprocess.check_call([sys.executable, "-m", "pip", "install", package])  # Execute pip install command for the specified package
-
+# Third-party dependencies
 try:
-    import rich  # Attempting to import the rich library for enhanced console output
-    import art  # Attempting to import the art library for ASCII art generation
-    import fakefarsi  # Attempting to import the fakefarsi library for generating fake information
-except ImportError:  # If any of the imports fail
-    install('rich')  # Install the rich library
-    install('art')  # Install the art library
-    install('fakefarsi')  # Install the fakefarsi library
+    import rich
+    import art
+    import fakefarsi
+    from Crypto.Cipher import AES
+except ImportError:
+    # Auto-install missing dependencies
+    def install(package):
+        """Install a package using pip."""
+        subprocess.check_call([sys.executable, "-m", "pip", "install", package])
+    
+    install('rich')
+    install('art')
+    install('fakefarsi')
+    install('pycryptodome')
 
-from art import text2art  # Importing the text2art function from the art library
-from rich.console import Console  # Importing the Console class from the rich library for styled console output
-from rich.prompt import Prompt  # Importing the Prompt class from the rich library for user input prompts
-from fakefarsi import fakefarsi  # Importing the fakefarsi module for generating fake information
+from art import text2art
+from rich.console import Console
+from rich.prompt import Prompt
+from fakefarsi import fakefarsi
 
-console = Console()  # Creating an instance of Console for styled output
+console = Console()
+
+# Create a custom print function for chatbot responses
+def chatbot_print(*args, **kwargs):
+    """
+    Wrapper for console.print that automatically adds the chatbot prefix.
+    Preserves all original console.print functionality.
+    """
+    # If there's a message to print (args has content)
+    if args:
+        # If the message already starts with the chatbot prefix, print as is
+        if isinstance(args[0], str) and args[0].startswith("[bold green]Chatbot:"):
+            console.print(*args, **kwargs)
+        else:
+            # For string arguments, prepend the prefix
+            if isinstance(args[0], str):
+                message = f"[bold green]Chatbot:[/] {args[0]}"
+                console.print(message, *args[1:], **kwargs)
+            else:
+                # For non-string first arguments (like panels, tables)
+                # Print the prefix first, then the content
+                console.print("[bold green]Chatbot:[/]", *args, **kwargs)
+    else:
+        # If no arguments, just print the prefix
+        console.print("[bold green]Chatbot:[/]", **kwargs)
 
 def print_ai():
-    """
-    Print the AI art representation.
-    """
-    ai_art = text2art("AI", font="block")  # Generate ASCII art for the text "AI"
-    console.print(ai_art, style="bold red")  # Print the ASCII art in bold red style
+    """Print the AI art representation."""
+    ai_art = text2art("AI", font="block")
+    console.print(ai_art, style="bold red")  # Keep original as this is not a chatbot message
 
 def chatbot():
-    """
-    Run the chatbot interaction.
-    """
-    print_ai()  # Call the function to print the AI art representation
-    console.print("[bold green]Chatbot:[/] Hi! I am your chatbot. You can ask me anything! Type 'what you can' to see features.")  # Greet the user
+    """Run the chatbot interaction loop."""
+    print_ai()
+    chatbot_print("Hi! I am your chatbot. You can ask me anything! Type 'what can you do' to see features.")
 
-    while True:  # Start an infinite loop for continuous interaction
-        user_input = Prompt.ask("[bold blue]You[/]").lower()  # Prompt the user for input and convert it to lowercase
-        handle_user_input(user_input)  # Pass the user input to the handler function
+    while True:
+        user_input = Prompt.ask("[bold blue]You[/]").lower()
+        handle_user_input(user_input)
 
 def handle_user_input(user_input):
-    """
-    Handle user input and provide appropriate responses.
-    """
-    responses = {  # Dictionary mapping user inputs to chatbot responses
+    """Handle user input and provide appropriate responses."""
+    responses = {
         # Welcome conversation
-        "hello": "[bold green]Chatbot:[/] Hello! How can I help you?",
-        "hi": "[bold green]Chatbot:[/] Hi! How can I help you?",
-        "hey": "[bold green]Chatbot:[/] Hey! How can I help you?",
-        "how are you": "[bold green]Chatbot:[/] I'm just a program, but I'm doing great! How about you?",
-        "who are you": "[bold green]Chatbot:[/] I am Zuro, your friendly chatbot. How can I assist you?",
+        "hello": "Hello! How can I help you?",
+        "hi": "Hi! How can I help you?",
+        "hey": "Hey! How can I help you?",
+        "how are you": "I'm just a program, but I'm doing great! How about you?",
+        "who are you": "I am Zuro, your friendly chatbot. How can I assist you?",
 
-        # Finuture
-        "what you can": "[bold green]Chatbot:[/]\n\ntype 'Encrypt' to encrypt your text \n\ntype 'Decrypt' to decrypt your text \n\ntype 'fake' to generate a fake information \n\nand you can ask me 'anythings' :) \n\ntype 'bye' to exit.",
+        # Features
+        "what can you do": "\n\ntype 'Encrypt' to encrypt your text \n\ntype 'Decrypt' to decrypt your text \n\ntype 'fake' to generate a fake information \n\nand you can ask me 'anything' :) \n\ntype 'bye' to exit.",
 
         # Name
-        "name": "[bold green]Chatbot:[/] My name is Zuro. How can I help you?",
-        "what's your name": "[bold green]Chatbot:[/] My name is Zuro. I am chat-bot build by Python. How can I help you?",
+        "name": "My name is Zuro. How can I help you?",
+        "what's your name": "My name is Zuro. I am chat-bot build by Python. How can I help you?",
 
         # End conversation
-        "bye": "[bold green]Chatbot: Goodbye! Have a great day!"  # Response for exiting the chatbot
+        "bye": "Goodbye! Have a great day!"
     }
-    if "bye" in user_input:  # Check if the user wants to exit
-        console.print(responses["bye"])  # Print the goodbye message
-        sys.exit()  # Exit the program
-    elif user_input in responses:  # If the user input matches a predefined response
-        console.print(responses[user_input])  # Print the corresponding response
-    elif "encrypt" in user_input:  # If the user wants to encrypt text
-        encrypt_text()  # Call the encryption function
-    elif "decrypt" in user_input:  # If the user wants to decrypt text
-        decrypt_text()  # Call the decryption function
-    elif "fake" in user_input:  # If the user wants to generate fake information
-        generate_fake_info()  # Call the function to generate fake information
-    else:  # If the user input does not match any known commands
-        console.print("[bold green]Chatbot:[/] I'm not sure I understand.\nCan you ask something else?")  # Prompt for clarification
-
-    return False  # Return False to indicate the function has completed
+    
+    # Command handlers dictionary
+    commands = {
+        "encrypt": encrypt_text,
+        "decrypt": decrypt_text,
+        "fake": generate_fake_info,
+        "bye": lambda: (chatbot_print(responses["bye"]), sys.exit())
+    }
+    
+    # Check for exact matches first
+    if user_input in responses:
+        chatbot_print(responses[user_input])
+        return False
+    
+    # Check for command keywords
+    for cmd, handler in commands.items():
+        if cmd in user_input:
+            handler()
+            return False
+    
+    # Default response if no match
+    chatbot_print("I'm not sure I understand.\nCan you ask something else?")
+    return False
 
 def encrypt_text():
-    """
-    Encrypt the user's text input.
-    """
-    input_text = Prompt.ask("[bold blue]Enter your text to encrypt:[/]")  # Prompt the user for text to encrypt
-    encrypted_text = input_text.encode("utf-8").hex()  # Encrypt the text by encoding it to UTF-8 and converting to hex
-    console.print(f"[bold green]Chatbot:[/] Here is your encrypted text: {encrypted_text}")  # Print the encrypted text
+    """Encrypt the user's text input using AES-CBC."""
+    input_text = Prompt.ask("[bold blue]Enter your text to encrypt[/]")
+    KeySeed = Prompt.ask("[bold blue]Enter your password[/]")
+
+    # Generate a 32-byte key from the password
+    key = hashlib.sha256(KeySeed.encode()).digest()
+    
+    # Add verification string to validate successful decryption
+    input_text += "EncryptDecryptSigning"
+
+    # Add padding to make text length a multiple of 16 bytes (AES block size)
+    while len(input_text) % 16 != 0:
+        input_text += " "
+
+    # Generate IV from the key for AES-CBC mode
+    # Using CBC instead of ECB for better security with plaintext
+    iv = hashlib.sha256(key).digest()[:16]
+
+    # Perform encryption
+    cipher = AES.new(key, AES.MODE_CBC, iv)
+    encrypted_text = cipher.encrypt(input_text.encode())
+    encrypted_text = encrypted_text.hex()
+
+    # Display result
+    chatbot_print("Here is your encrypted text")
+    console.print(f"[bold red]{encrypted_text}[/]")  # Keep original formatting for encrypted text
 
 def decrypt_text():
-    """
-    Decrypt the user's hex input.
-    """
-    input_text = Prompt.ask("[bold blue]Enter your text to decrypt:[/]")  # Prompt the user for hex text to decrypt
+    """Decrypt the user's hex input using AES-CBC."""
+    input_text = Prompt.ask("[bold blue]Enter your text to decrypt[/]")
+    KeySeed = Prompt.ask(" \n[bold blue]Enter your password[/]")
+    
+    # Generate key and IV identical to encryption process
+    key = hashlib.sha256(KeySeed.encode()).digest()
+    iv = hashlib.sha256(key).digest()[:16]
+
+    cipher = AES.new(key, AES.MODE_CBC, iv)
     try:
-        decrypted_text = bytes.fromhex(input_text).decode("utf-8")  # Attempt to convert hex back to UTF-8 text
-        console.print(f"[bold green]Chatbot:[/] Here is your decrypted text: {decrypted_text}")  # Print the decrypted text
-    except ValueError:  # If the input is not a valid hex string
-        console.print("[bold green]Chatbot:[/] Invalid hex string. Please enter a valid hex string.")  # Inform the user of the error
+        decrypted_text = cipher.decrypt(bytes.fromhex(input_text))
+        decrypted_text = decrypted_text.decode('utf-8')
+
+        # Verify decryption was successful using the verification string
+        if not decrypted_text.__contains__("EncryptDecryptSigning"):
+            chatbot_print("Decryption failed. Invalid key or corrupted data.")
+            return
+            
+        # Extract original text by removing verification string
+        decrypted_text = decrypted_text.split("EncryptDecryptSigning")[0]
+        chatbot_print(f"Here is your decrypted text \n{decrypted_text}")
+        
+    except ValueError:
+        chatbot_print("Decryption failed. Invalid key/text or corrupted data.")
+        return
 
 def generate_fake_info():
-    """
-    Generate and display fake information.
-    """
-    fake_info = fakefarsi.complete()  # Generate fake information using the fakefarsi library
-    console.print(f"[bold green]Chatbot:[/] Here is your fake information: \n{fake_info}")  # Print the generated fake information
+    """Generate and display fake information."""
+    fake_info = fakefarsi.complete()
+    chatbot_print(f"Here is your fake information: \n{fake_info}")
 
-# Run the chatbot
-if __name__ == "__main__":  # Check if the script is being run directly
-    chatbot()  # Start the chatbot interaction
+# Entry point
+if __name__ == "__main__":
+    chatbot()
