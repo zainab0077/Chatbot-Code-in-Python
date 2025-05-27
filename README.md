@@ -88,6 +88,3 @@ For questions, suggestions, or just to say hi, feel free to reach out:
 - GitHub: [Mahan Rahmani](https://github.com/mhnrhmni)  
 - Email: *mahanrahmani777@gmail.com*
   
----
-
-If you need more specific details to add, feel free to let me know! This README provides a good starting point and can be expanded as necessary.
