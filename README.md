@@ -32,7 +32,7 @@ git clone https://github.com/mhnrhmni/Zuro-ChatBot.git
 cd Zuro-ChatBot
 ```
 
-### 2. Install Dependencies
+### 2. Install Dependencies 
 
 You don't need to do anything special to install the requirements, leave it all to the bot
 
