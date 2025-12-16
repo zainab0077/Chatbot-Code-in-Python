@@ -76,13 +76,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Autors 🧑‍💻
 Made with 💻 and ❤️ by
-[Zainab Ansari](https://github.com/zainab0077) (Owner)
+[Zainab Khan](https://github.com/zainab0077) (Owner)
 [Mahan Rahmani](https://github.com/mhnrhmni) (Developer)
 
 
 ## 📫 Connect with Us  
 For questions, suggestions, or just to say hi, feel free to reach out:  
-- GitHub: [Zainab Ansari](https://github.com/zainab0077)
+- GitHub: [Zainab Khan](https://github.com/zainab0077)
 - Email: *haseb3883838@gmail.com*
 
 - GitHub: [Mahan Rahmani](https://github.com/mhnrhmni)  
