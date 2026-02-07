@@ -85,8 +85,6 @@ def handle_user_input(user_input):
         "name": "My name is Zuro. How can I help you?",
         "what's your name": "My name is Zuro. I am chat-bot build by Python. How can I help you?",
 
-        # End conversation
-        "bye": "Goodbye! Have a great day!"
     }
     
     # Command handlers dictionary
@@ -94,7 +92,7 @@ def handle_user_input(user_input):
         "encrypt": encrypt_text,
         "decrypt": decrypt_text,
         "fake": generate_fake_info,
-        "bye": lambda: (chatbot_print(responses["bye"]), sys.exit())
+        "bye": lambda: (chatbot_print("Goodbye! Have a great day!"), sys.exit())
     }
     
     # Check for exact matches first
